@@ -1,2 +1,2 @@
 # Dynamic-Programming-Codes
-Problem solving to Dynamic Programming Problems
+Problem solving approach to Dynamic Programming 
