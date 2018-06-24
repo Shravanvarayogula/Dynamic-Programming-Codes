@@ -1,2 +1,34 @@
 #Knapsack problem with 1-0 property
 
+public class Knapsack{
+public static void main (String [] args){
+int [] weights = {5,6,7,8,9};
+int [] value = {1,2,3,4,5,6};
+int maxWeight = 10;
+System.out.println("Max Benefits " +maxWeight+ " is +findMaxWeight(weights,value,maxWeight) );
+}
+
+static int findMaxWeight(int [] weights, int[] value, int maxWeight){
+//Memoization array to store the results of the sub array 
+int [][] memoization = new int [weights.length+1,maxWeight+1];
+//Value sub array 
+//B(0,W)=0;
+for(int i =0; i<weights.length;i++){
+memoization[0][i]=0;
+//B(i,0)=0;
+for(int i=0;i<=weights.length;i++)
+memoization[i][0]=0;
+for(int i=1;i<=weights.length;i++){
+		for(int w=1;w<=maxWeight;w++){
+			if(weights[i-1]>w)
+				memoization[i][w]=memoization[i-1][w];
+			else if(weights[i-1]<=w){
+				//2 possibilities
+				memoization[i][w]=Math.max(memoization[i-1][w],value[i-1]+memoization[i-1][w-weights[i-1]] );
+			
+		}
+		}
+	}
+return memoization[weights.length][maxWeight];
+}
+}
